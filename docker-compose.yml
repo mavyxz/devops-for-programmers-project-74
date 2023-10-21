@@ -6,4 +6,4 @@ services:
     command: sh -c "make test"
     volumes:
       - ./app:/app
-    image: mavyxz/devops-for-programmers-project-74
+    image: "mavyxz/devops-for-programmers-project-74:${TAG}"
