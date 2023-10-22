@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
 
 env:
   TEST_TAG: mavyxz/devops-for-programmers-project-74:test
