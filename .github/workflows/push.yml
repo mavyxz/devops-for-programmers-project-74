@@ -36,6 +36,8 @@ jobs:
           file: Dockerfile.production
           load: true
           tags: ${{ env.TEST_TAG }}
+          cache-from: type=registry,ref=${{ env.TEST_TAG }}
+          cache-to: type=inline
 
       - name: Test
         run: TAG=test make ci
