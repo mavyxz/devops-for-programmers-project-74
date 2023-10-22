@@ -1,13 +1,24 @@
 services:
+
   app:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: sh -c "make test"
+    command: sh -c "sleep 3 && make test"
     volumes:
       - ./app:/app
       - node_modules:/app/node_modules
-    image: "mavyxz/devops-for-programmers-project-74:${TAG}"
+    image: "mavyxz/devops-for-programmers-project-74"
+    depends_on:
+      - db
+    env_file:
+      - '.env'
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
 
 volumes:
   node_modules:
