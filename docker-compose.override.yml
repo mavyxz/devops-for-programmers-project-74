@@ -1,7 +1,25 @@
 services:
+  caddy:
+    image: caddy:2.7.5-alpine
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - $PWD/services/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
   app:
     command: sh -c "npm run dev"
     ports:
       - "8080:8080"
     volumes:
       - ./app:/app
+
+volumes:
+  caddy_data:
+  caddy_config:
