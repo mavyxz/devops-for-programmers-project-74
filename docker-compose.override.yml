@@ -13,6 +13,8 @@ services:
       - $PWD/services/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    depends_on:
+      - app
 
   app:
     command: sh -c "sleep 3 && npm start"
